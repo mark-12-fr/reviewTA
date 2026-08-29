@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/*
+  ReviewTa design tokens.
+
+  Colour carries one meaning in this interface: how far along an item is.
+  The four mastery states are a single-hue ink ramp that fills as you learn,
+  so nothing else competes with it. Red and green appear only where they are
+  genuinely semantic - marking an answer right or wrong.
+*/
+@theme {
+  --color-paper: #faf9f7;
+  --color-surface: #ffffff;
+  --color-sunken: #f3f1ee;
+  --color-rule: #e5e2dd;
+  --color-rule-strong: #cfcbc4;
+
+  --color-ink: #16171a;
+  --color-ink-2: #565b62;
+  --color-ink-3: #888d94;
+
+  --color-accent: #c04a1e;
+  --color-accent-hover: #a33d16;
+  --color-accent-tint: #fbf0ea;
+
+  --color-correct: #1b6b4a;
+  --color-correct-tint: #eff6f2;
+  --color-wrong: #a32b2b;
+  --color-wrong-tint: #fbefef;
+
+  /* Mastery ramp: unfamiliar (empty) through mastered (full ink). */
+  --color-m0: #dbd8d3;
+  --color-m1: #edb694;
+  --color-m2: #d2703f;
+  --color-m3: #8f3512;
+}
+
+@theme inline {
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-plex-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  /* One focus treatment everywhere, always visible from the keyboard. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background: var(--color-accent-tint);
+    color: var(--color-accent-hover);
+  }
+}
+
+/* Small caps label used for eyebrows and field labels. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-3);
+}
+
+/* Flashcard flip */
+.perspective-1000 {
+  perspective: 1200px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Chip rows scroll without a visible bar */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* The passage a quiz citation points at, once the source page finds it. */
+.source-hit {
+  background: var(--color-accent-tint);
+  box-shadow: -0.75rem 0 0 var(--color-accent-tint), 0.75rem 0 0 var(--color-accent-tint);
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-reveal {
+  animation: reveal 180ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-rule-strong);
+  border: 3px solid var(--color-paper);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-3);
+}
