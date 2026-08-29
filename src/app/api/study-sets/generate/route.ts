@@ -6,7 +6,7 @@ import { UnsupportedFileError, fileToParts, urlToText } from '@/lib/ai/input'
 import type { Part } from '@/lib/ai/provider'
 
 export const dynamic = 'force-dynamic'
-export const maxDuration = 800
+export const maxDuration = 300
 
 interface Event {
   type: 'progress' | 'done' | 'error'

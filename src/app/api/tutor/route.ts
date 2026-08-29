@@ -4,7 +4,7 @@ import { describeAIError } from '@/lib/ai/client'
 import { streamTutorReply, type TutorTurn } from '@/lib/ai/tutor'
 
 export const dynamic = 'force-dynamic'
-export const maxDuration = 800
+export const maxDuration = 300
 
 type ThreadKind = 'study-set' | 'solution'
 
