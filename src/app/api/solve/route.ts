@@ -6,7 +6,7 @@ import type { Part } from '@/lib/ai/provider'
 import { solveProblem } from '@/lib/ai/solve'
 
 export const dynamic = 'force-dynamic'
-export const maxDuration = 800
+export const maxDuration = 300
 
 export async function GET() {
   const rows = db
